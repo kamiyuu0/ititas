@@ -27,7 +27,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def after_sign_in_path_for(resource)
     # TODO: サインイン後にリダイレクトさせたいパスを記載
-    root_path
+    tasks_path
   end
 
   def after_sign_out_path_for(resource)
