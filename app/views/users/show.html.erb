@@ -1,0 +1,51 @@
+<!-- マイページヘッダー -->
+<div class="bg-base-100 p-6 rounded-xl shadow-md mb-8">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+      <h1 class="text-3xl font-bold text-base-content mb-2 sm:mb-0">☁️ マイページ</h1>
+      <p class="text-base-content/80">
+        <span class="font-semibold">ユーザー名：</span><%= @user.name %>
+      </p>
+    </div>
+
+    <%= link_to "✏️ プロフィールを編集", edit_user_registration_path,
+        class: "btn btn-outline btn-sm sm:btn-md" %>
+  </div>
+</div>
+
+<!-- タスク一覧 -->
+<h2 class="text-xl font-semibold text-base-content mb-4">📅 あなたの投稿</h2>
+
+<% if @tasks.any? %>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% @tasks.each do |task| %>
+      <%= link_to task_path(task), class: "card bg-base-100 shadow-md hover:shadow-xl transition no-underline text-base-content" do %>
+        <div class="card-body">
+          <div class="flex items-center justify-between">
+            <h2 class="card-title text-yellow-600 text-base font-semibold">
+              🐣 <%= task.user.name %>
+            </h2>
+
+            <% if task.done? %>
+              <span class="badge badge-success text-white">✅ 完了</span>
+            <% else %>
+              <span class="badge badge-warning text-white">⏳ 未完了</span>
+            <% end %>
+          </div>
+
+          <p class="text-lg font-semibold mt-2 truncate">
+            🎯 <%= task.title %>
+          </p>
+
+          <p class="text-base-content/70 mt-2 line-clamp-3">
+            <%= task.description.presence ? truncate(task.description, length: 100) : "（詳細なし）" %>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="p-6 bg-base-200 rounded-xl text-center text-base-content">
+    <p class="font-semibold">まだタスクがありません。</p>
+  </div>
+<% end %>

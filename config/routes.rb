@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "mypage" => "users#show"
 
   resources :tasks, only: [:index, :new, :create, :show] do
     member do
