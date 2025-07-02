@@ -24,12 +24,29 @@
 
   <!-- ✅ 完了ボタン（自分の・今日の・未完了） -->
   <% if current_user.own?(@task) && @task.target_date == Date.today && !@task.done? %>
-    <div class="mt-4">
-      <%= button_to "✅ 今日の分を完了にする", complete_task_path(@task),
-          method: :patch,
-          class: "btn btn-success btn-sm w-full" %>
+    <div class="mt-4 text-center">
+      <label for="complete-modal" class="btn btn-success btn-sm w-full cursor-pointer">✅ 今日の分を完了にする</label>
     </div>
   <% end %>
+
+  <!-- ✅ モーダル定義 -->
+  <input type="checkbox" id="complete-modal" class="modal-toggle" />
+  <div class="modal" role="dialog">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">タスク完了の確認</h3>
+      <p class="py-4">このタスクを本当に完了にしますか？</p>
+      <div class="modal-action">
+        <!-- キャンセル：モーダルを閉じる -->
+        <label for="complete-modal" class="btn">キャンセル</label>
+
+        <!-- 確定：completeアクションへ -->
+        <%= button_to "完了にする", complete_task_path(@task),
+            method: :patch,
+            class: "btn btn-success",
+            form: { data: { turbo: false } } %>
+      </div>
+    </div>
+  </div>
 
   <!-- 戻るボタン -->
   <div class="mt-6">
