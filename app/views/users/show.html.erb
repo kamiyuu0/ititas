@@ -13,6 +13,39 @@
   </div>
 </div>
 
+<!-- 今日のタスクステータス -->
+<% if @today_task.present? %>
+  <%= link_to task_path(@today_task), class: "block" do %>
+    <div class="card bg-base-100 shadow-xl mb-8 p-6 border-l-4 <%= @today_task.done? ? 'border-green-400' : 'border-yellow-400' %>">
+      <div class="card-body space-y-2">
+        <div class="flex items-center justify-between">
+          <h2 class="card-title text-xl text-base-content">
+            ☁️ 今日のタスク：<span class="text-yellow-600"><%= @today_task.title %></span>
+          </h2>
+
+          <% if @today_task.done? %>
+            <span class="badge badge-success text-white">✅ 完了</span>
+          <% else %>
+            <span class="badge badge-warning text-white">⏳ 未完了</span>
+          <% end %>
+        </div>
+
+        <p class="text-base-content/70">
+          <%= truncate(@today_task.description.presence || "（詳細なし）", length: 120) %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="card bg-base-200 shadow-inner mb-8 p-6 border-l-4 border-blue-300">
+    <div class="card-body">
+      <h2 class="card-title text-lg text-base-content mb-2">📅 今日のタスクはまだ登録されていません</h2>
+      <%= link_to "🎯 今日のタスクを作成する", new_task_path(date: Date.today), class: "btn btn-primary mt-2" %>
+    </div>
+  </div>
+<% end %>
+
+
 <!-- タスク一覧 -->
 <h2 class="text-xl font-semibold text-base-content mb-4">📅 あなたの投稿</h2>
 

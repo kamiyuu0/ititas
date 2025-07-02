@@ -59,4 +59,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
      # アクティブでないアカウントのサインアップ後にリダイレクトさせたいパスを記載(あんまわかってない)
      tasks_path
   end
+
+  def after_update_path_for(resource)
+    mypage_path
+  end
 end
