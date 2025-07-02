@@ -1,0 +1,22 @@
+<header class="navbar bg-base-100 shadow-md px-4">
+  <!-- 左：ロゴ or アイコン -->
+  <div class="flex-1">
+    <a href="#" class="text-xl font-bold flex items-center gap-2">
+      🐣
+      <span>MyApp</span>
+    </a>
+  </div>
+
+  <!-- 右：ナビゲーション -->
+  <div class="flex-none space-x-2">
+    <% if user_signed_in? %>
+      <%= link_to "☁️ マイページ", "#", class: "btn btn-ghost btn-sm" %>
+      <%= link_to "📅 タスク作成", "#", class: "btn btn-ghost btn-sm" %>
+      <%= link_to "🌤 一覧ページ", "#", class: "btn btn-ghost btn-sm" %>
+      <%= link_to "サインアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline btn-sm" %>
+    <% else %>
+      <%= link_to "🌤 はじめる", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+      <%= link_to "🎯 ログイン", new_user_session_path, class: "btn btn-outline btn-sm" %>
+    <% end %>
+  </div>
+</header>
