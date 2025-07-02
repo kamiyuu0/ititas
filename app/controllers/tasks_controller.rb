@@ -28,6 +28,16 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def complete
+    @task = current_user.tasks.find(params[:id])
+    if @task.target_date == Date.today
+      @task.update(done: true)
+      redirect_to task_path(@task), notice: "今日のタスクを完了しました！！！"
+    else
+      redirect_to task_path(@task), alert: "今日以外のタスクは完了にできません。"
+    end
+  end
+
   private
   
   def task_params

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :tasks, only: [:index, :new, :create, :show]
+  resources :tasks, only: [:index, :new, :create, :show] do
+    member do
+      patch :complete
+    end
+  end
+  
   root "static_pages#top"
   devise_for :users, controllers: {
     registrations: 'users/registrations',
