@@ -7,7 +7,7 @@ class TasksController < ApplicationController
 
   def new
     if current_user.tasks.where(target_date: Date.today).exists?
-      redirect_to tasks_path, alert: "今日のタスクはすでに登録されています。"
+      redirect_to request.referer, alert: "今日のタスクはすでに登録されています。"
       return
     end
     @task = Task.new
@@ -32,8 +32,9 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params[:id])
     if @task.target_date == Date.today
       @task.update(done: true)
-      redirect_to task_path(@task), notice: "今日のタスクを完了しました！！！"
+      redirect_to mypage_path, notice: "今日のタスクを完了しました！！！"
     else
+      # ここには来れないはずだが、念のための処理
       redirect_to task_path(@task), alert: "今日以外のタスクは完了にできません。"
     end
   end
