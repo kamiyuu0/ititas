@@ -10,7 +10,7 @@
   <!-- 右：ナビゲーション -->
   <div class="flex-none space-x-2">
     <% if user_signed_in? %>
-      <%= link_to "☁️ マイページ", "#", class: "btn btn-ghost btn-sm" %>
+      <%= link_to "☁️ マイページ", mypage_path, class: "btn btn-ghost btn-sm" %>
       <%= link_to "📅 タスク作成", new_task_path, class: "btn btn-ghost btn-sm" %>
       <%= link_to "🌤 一覧ページ", tasks_path, class: "btn btn-ghost btn-sm" %>
       <%= link_to "サインアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline btn-sm" %>

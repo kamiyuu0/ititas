@@ -11,7 +11,7 @@
   </h2>
 
   <p class="text-gray-700 whitespace-pre-line">
-    <%= @task.description.presence || "（詳細なし）" %>
+    <%= @task.description.presence ? truncate(@task.description, length: 100) : "（詳細なし）" %>
   </p>
 
   <div class="flex flex-wrap gap-2 mt-4">
@@ -50,6 +50,6 @@
 
   <!-- 戻るボタン -->
   <div class="mt-6">
-    <%= link_to "← 戻る", tasks_path, class: "btn btn-outline w-full" %>
+    <%= link_to "← 戻る", request.referer || root_path, class: "btn btn-outline w-full" %>
   </div>
 </div>
