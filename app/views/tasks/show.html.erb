@@ -1,0 +1,29 @@
+<h1 class="text-3xl font-bold mb-6 text-center">☁️ タスクの詳細</h1>
+
+<div class="max-w-2xl mx-auto bg-base-100 p-6 rounded-lg shadow-lg space-y-4">
+  <div class="text-sm text-gray-500 text-right">
+    <span>投稿者: <%= @task.user.name %></span> ・ 
+    <span>投稿日: <%= @task.created_at.to_date %></span>
+  </div>
+
+  <h2 class="text-2xl font-bold text-yellow-600">
+    🎯 <%= @task.title %>
+  </h2>
+
+  <p class="text-gray-700 whitespace-pre-line">
+    <%= @task.description.presence || "（詳細なし）" %>
+  </p>
+
+  <div class="flex flex-wrap gap-2 mt-4">
+    <% if @task.done? %>
+      <span class="badge badge-success text-white">✅ 完了</span>
+    <% else %>
+      <span class="badge badge-warning text-white">⏳ 未完了</span>
+    <% end %>
+
+  </div>
+
+  <div class="mt-6">
+    <%= link_to "← 戻る", tasks_path, class: "btn btn-outline" %>
+  </div>
+</div>

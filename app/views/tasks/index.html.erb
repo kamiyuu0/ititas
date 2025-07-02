@@ -1,0 +1,33 @@
+<h1 class="text-3xl font-bold mb-6 text-center">☁️ みんなの「いちたす」</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% @tasks.each do |task| %>
+    <%= link_to task_path(task), class: "card bg-base-100 shadow-lg hover:shadow-xl transition duration-200 no-underline text-current" do %>
+      <div class="card-body">
+        <div class="flex items-center justify-between">
+          <h2 class="card-title text-yellow-600">
+            🐣 <%= task.user.name %>
+          </h2>
+
+          <% if task.done? %>
+            <span class="badge badge-success text-white">✅ 完了</span>
+          <% else %>
+            <span class="badge badge-warning text-white">⏳ 未完了</span>
+          <% end %>
+        </div>
+
+        <p class="font-semibold text-lg mt-2">
+          🎯 <%= task.title %>
+        </p>
+
+        <p class="text-gray-600 mt-2">
+          <%= truncate(task.description, length: 100) %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<% if @tasks.empty? %>
+  <p class="text-center text-gray-400 mt-12">まだタスクが投稿されていません。</p>
+<% end %>
