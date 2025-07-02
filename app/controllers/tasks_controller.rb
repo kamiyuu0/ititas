@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @tasks = Task.all.includes(:user).where(is_public: true, target_date: Date.today).order(target_date: :asc)
   end
@@ -16,10 +18,9 @@ class TasksController < ApplicationController
     @task.target_date = Date.today
 
     if @task.save
-      redirect_to task_path(@task), notice: "Task was successfully created."
+      redirect_to task_path(@task), notice: "今日のタスクを登録しました！"
     else
-      # TODO: エラーメッセージを表示するための処理を追加
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

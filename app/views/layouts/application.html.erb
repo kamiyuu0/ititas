@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html data-theme="bumblebee">
   <head>
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <title>🐝いちたす</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ffffff">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -21,6 +22,7 @@
   <body>
     <%= render "shared/header" %>
     <main class="container mx-auto mt-28 px-5">
+      <%= render 'shared/flash_message'%>
       <%= yield %>
     </main>
   </body>
