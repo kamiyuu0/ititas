@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def index
     @tasks = Task.all.includes(:user).where(is_public: true, target_date: Date.today).order(target_date: :asc)
