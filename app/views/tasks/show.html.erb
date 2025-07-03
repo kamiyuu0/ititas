@@ -52,4 +52,9 @@
   <div class="mt-6">
     <%= link_to "← 戻る", request.referer || root_path, class: "btn btn-outline w-full" %>
   </div>
-</div>
+
+  <% if current_user.own?(@task) %>
+    <%= link_to "https://twitter.com/intent/tweet?url=#{root_url}tasks/#{@task.id}&text=#{CGI.escape("いちたすでタスクを#{@task.done? ? "完了" : "登録"}したよ！")}\n&hashtags=#{CGI.escape("いちたす")}", target: "_blank" do %>
+      <span class="text-blue-500">ツイートする</span>
+    <% end %>
+  <% end %>

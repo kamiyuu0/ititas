@@ -26,6 +26,8 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @url = "https://res.cloudinary.com/desktest/image/upload/l_text:Sawarabi%20Gothic_50_bold:#{@task.title},co_rgb:333,w_500,c_fit/v1751464921/ogp_wajwg6.png"
+    set_meta_tags(og: { image: @url }, twitter: { image: @url })
   end
 
   def complete
