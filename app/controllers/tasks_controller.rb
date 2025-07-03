@@ -18,7 +18,7 @@ class TasksController < ApplicationController
     @task.target_date = Date.today
 
     if @task.save
-      redirect_to task_path(@task), notice: "今日のタスクを登録しました！"
+      redirect_to mypage_path, notice: "今日のタスクを登録しました！"
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class TasksController < ApplicationController
       redirect_to mypage_path, notice: "今日のタスクを完了しました！！！"
     else
       # ここには来れないはずだが、念のための処理
-      redirect_to task_path(@task), alert: "今日以外のタスクは完了にできません。"
+      redirect_to mypage_path, alert: "今日以外のタスクは完了にできません。"
     end
   end
 
