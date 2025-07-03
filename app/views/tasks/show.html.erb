@@ -59,6 +59,6 @@
 
   <!-- 戻るボタン -->
   <div class="mt-6">
-    <%= link_to "← 戻る", request.referer || root_path, class: "btn btn-outline w-full" %>
+    <%= link_to "← 戻る", current_user.nil? ? root_path : (request.referer || root_path), class: "btn btn-outline w-full" %>
   </div>
 </div>
