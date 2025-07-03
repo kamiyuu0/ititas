@@ -1,4 +1,12 @@
 module ApplicationHelper
+    def back_link_path
+      # リファラーが存在し、t.coからのリンクでない場合はリファラーを使用
+      if request.referer.present? && !request.referer.include?('t.co')
+        request.referer
+      else
+        root_path
+      end
+    end
 
   def default_meta_tags(url: "https://res.cloudinary.com/desktest/image/upload/v1751531494/ititas_xvfkax.png")
     {
