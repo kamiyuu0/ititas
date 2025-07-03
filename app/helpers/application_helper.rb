@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def default_meta_tags(url: "https://res.cloudinary.com/desktest/image/upload/l_text:Sawarabi%20Gothic_50_bold:あいうえおかきくけこあいうえおかきくけこ,co_rgb:333,w_500,c_fit/v1751464921/ogp_wajwg6.png")
+  def default_meta_tags(url: "https://res.cloudinary.com/desktest/image/upload/v1751523007/ititas_ragzok.png")
     {
       site: "いちたす",
       title: "いちたす",
