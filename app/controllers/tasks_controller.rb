@@ -26,7 +26,11 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
-    @url = "https://res.cloudinary.com/desktest/image/upload/l_text:Sawarabi%20Gothic_50_bold:#{@task.title},co_rgb:333,w_700,c_fit/v1751531494/ititas_dynamic_ogp_fqonfa.png"
+    @url = if @task.done
+      "https://res.cloudinary.com/desktest/image/upload/l_done_stamp_ihruve,w_800,h_450/l_text:Sawarabi%20Gothic_50_bold:#{@task.title},co_rgb:333,w_500,c_fit/v1751531494/ititas_dynamic_ogp_fqonfa.png"
+    else
+      "https://res.cloudinary.com/desktest/image/upload/l_text:Sawarabi%20Gothic_50_bold:#{@task.title},co_rgb:333,w_700,c_fit/v1751531494/ititas_dynamic_ogp_fqonfa.png"
+    end
     set_meta_tags(og: { image: @url }, twitter: { image: @url })
   end
 
