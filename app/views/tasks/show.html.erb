@@ -23,7 +23,7 @@
   </div>
 
   <!-- ✅ 完了ボタン（自分の・今日の・未完了） -->
-  <% if current_user.presence&.own?(@task) && @task.target_date == Date.today %>
+  <% if current_user.presence&.own?(@task) && @task.target_date == Time.zone.today %>
     <% if !@task.done?%>
       <div class="mt-4 text-center">
         <label for="complete-modal" class="btn btn-success btn-sm w-full cursor-pointer">✅ 今日の分を完了にする</label>

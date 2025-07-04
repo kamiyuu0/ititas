@@ -1,12 +1,15 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [ :show ]
 
   def index
-    @tasks = Task.all.includes(:user).where(is_public: true, target_date: Date.today).order(target_date: :asc)
+    @tasks = Task.all.includes(:user).where(is_public: true, target_date: Time.zone.today).order(target_date: :asc)
+    puts "=============================" * 100
+    puts Time.zone.now
+    puts "=============================" * 100
   end
 
   def new
-    if current_user.tasks.where(target_date: Date.today).exists?
+    if current_user.tasks.where(target_date: Time.zone.today).exists?
       redirect_to request.referer, alert: "今日のタスクはすでに登録されています。"
       return
     end
@@ -15,7 +18,7 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.build(task_params)
-    @task.target_date = Date.today
+    @task.target_date = Time.zone.today
 
     if @task.save
       redirect_to mypage_path, notice: "今日のタスクを登録しました！"
@@ -36,7 +39,7 @@ class TasksController < ApplicationController
 
   def complete
     @task = current_user.tasks.find(params[:id])
-    if @task.target_date == Date.today
+    if @task.target_date == Time.zone.today
       @task.update(done: true)
       redirect_to mypage_path, notice: "今日のタスクを完了しました！！！"
     else
@@ -46,7 +49,7 @@ class TasksController < ApplicationController
   end
 
   private
-  
+
   def task_params
     params.require(:task).permit(:title, :description, :target_date, :done, :is_public)
   end
