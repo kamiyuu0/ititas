@@ -3,9 +3,6 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all.includes(:user).where(is_public: true, target_date: Time.zone.today).order(target_date: :asc)
-    puts "=============================" * 100
-    puts Time.zone.now
-    puts "=============================" * 100
   end
 
   def new
