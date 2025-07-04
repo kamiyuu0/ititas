@@ -29,13 +29,16 @@
         <label for="complete-modal" class="btn btn-success btn-sm w-full cursor-pointer">✅ 今日の分を完了にする</label>
       </div>
     <% end %>
-    <div class="mt-4 text-center">
-      <%= link_to "🐦 Xでシェアする",
-                  "https://twitter.com/intent/tweet?url=#{root_url}tasks/#{@task.id}?is_done=#{@task.done?}&text=#{CGI.escape("いちたすでタスクを#{@task.done? ? "完了" : "登録"}したよ！")}\n&hashtags=#{CGI.escape("いちたす")}",
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                  class: "btn btn-info btn-sm w-full" %>
-    </div>
+    <% if @task.is_public %>
+      <!-- 🐦 Xでシェアするボタン（公開タスク） -->
+      <div class="mt-4 text-center">
+        <%= link_to "🐦 Xでシェアする",
+                    "https://twitter.com/intent/tweet?url=#{root_url}tasks/#{@task.id}?is_done=#{@task.done?}&text=#{CGI.escape("いちたすでタスクを#{@task.done? ? "完了" : "登録"}したよ！")}\n&hashtags=#{CGI.escape("いちたす")}",
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    class: "btn btn-info btn-sm w-full" %>
+      </div>
+    <% end %>
   <% end %>
 
   <!-- ✅ モーダル定義 -->

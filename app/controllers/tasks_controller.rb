@@ -3,9 +3,6 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all.includes(:user).where(is_public: true, target_date: Time.zone.today).order(target_date: :asc)
-    puts "=============================" * 100
-    puts Time.zone.now
-    puts "=============================" * 100
   end
 
   def new
@@ -29,6 +26,11 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    if !@task.is_public && !current_user.presence&.own?(@task)
+      redirect_to tasks_path, alert: "このタスクは非公開です。"
+      return
+    end
+
     @url = if @task.done
       "https://res.cloudinary.com/desktest/image/upload/l_done_stamp_ihruve,w_800,h_450/l_text:Sawarabi%20Gothic_50_bold:#{@task.title},co_rgb:333,w_500,c_fit/v1751531494/ititas_dynamic_ogp_fqonfa.png"
     else
