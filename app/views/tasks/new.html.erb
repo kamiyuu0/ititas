@@ -1,4 +1,9 @@
-<h1 class="text-3xl font-bold mb-6 text-center">🎯 今日の「いちたす」を登録しよう！</h1>
+<h1 class="text-3xl font-bold mb-3 text-center">🎯 今日の「いちたす」を登録しよう！</h1>
+
+<div class="max-w-xl mx-auto mb-6 text-center text-sm text-gray-600">
+  <p>※ タスクの作成は <span class="font-semibold text-yellow-600">1日1つ</span> だけです。</p>
+  <p>※ 作成後の <span class="font-semibold text-yellow-600">編集はできません</span>。</p>
+</div>
 
 <div class="max-w-xl mx-auto bg-base-100 p-6 rounded-lg shadow-lg">
   <%= form_with model: @task, local: true do |f| %>
