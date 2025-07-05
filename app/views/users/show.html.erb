@@ -33,6 +33,16 @@
         <p class="text-base-content/70">
           <%= truncate(@today_task.description.presence || "", length: 120) %>
         </p>
+        <!-- ↓↓↓ 追加部分 ↓↓↓ -->
+        <div class="mt-4 text-sm text-base-content/60 flex justify-between items-center">
+          <span>
+            <%= @today_task.is_public ? "🌐 公開" : "🔒 非公開" %>
+          </span>
+          <span>
+            🕓 <%= @today_task.target_date.strftime("%Y/%m/%d") %>
+          </span>
+        </div>
+        <!-- ↑↑↑ 追加部分 ↑↑↑ -->
       </div>
     </div>
   <% end %>
@@ -73,6 +83,16 @@
           <p class="text-base-content/70 mt-2 line-clamp-3">
             <%= task.description.presence ? truncate(task.description, length: 100) : "" %>
           </p>
+          <!-- ↓↓↓ 追加部分 ↓↓↓ -->
+          <div class="mt-4 text-sm text-base-content/60 flex justify-between items-center">
+            <span>
+              <%= task.is_public ? "🌐 公開" : "🔒 非公開" %>
+            </span>
+            <span>
+              🕓 <%= task.target_date.strftime("%Y/%m/%d") %>
+            </span>
+          </div>
+          <!-- ↑↑↑ 追加部分 ↑↑↑ -->
         </div>
       <% end %>
     <% end %>

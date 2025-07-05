@@ -3,7 +3,7 @@
 <div class="max-w-2xl mx-auto bg-base-100 p-6 rounded-lg shadow-lg space-y-4">
   <div class="text-sm text-gray-500 text-right">
     <span>投稿者: <%= @task.user.name %></span> ・ 
-    <span>投稿日: <%= @task.created_at.to_date %></span>
+    <span>投稿日: <%= @task.target_date.strftime("%Y/%m/%d") %></span>
   </div>
 
   <h2 class="text-2xl font-bold text-yellow-600">
