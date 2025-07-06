@@ -1,6 +1,6 @@
-<h1 class="text-3xl font-bold mb-6 text-center">☁️ 今日のみんなの「いちたす」</h1>
+<h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center px-4">☁️ 今日のみんなの「いちたす」</h1>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
   <% @tasks.each do |task| %>
     <%= link_to task_path(task), class: "card bg-base-100 shadow-lg hover:shadow-xl transition duration-200 no-underline text-current" do %>
       <div class="card-body">
@@ -20,7 +20,7 @@
           🎯 <%= task.title %>
         </p>
 
-        <p class="text-gray-600 mt-2">
+        <p class="text-gray-600 mt-2 text-sm sm:text-base line-clamp-3">
           <%= truncate(task.description, length: 100) %>
         </p>
       </div>
