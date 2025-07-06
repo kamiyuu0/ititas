@@ -1,26 +1,26 @@
 <!-- マイページヘッダー -->
-<div class="bg-base-100 p-6 rounded-xl shadow-md mb-8">
+<div class="bg-base-100 p-4 sm:p-6 rounded-xl shadow-md mb-6 sm:mb-8">
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     <div>
-      <h1 class="text-3xl font-bold text-base-content mb-2 sm:mb-0">☁️ マイページ</h1>
-      <p class="text-base-content/80">
+      <h1 class="text-2xl sm:text-3xl font-bold text-base-content mb-2 sm:mb-0">☁️ マイページ</h1>
+      <p class="text-base-content/80 text-sm sm:text-base">
         <span class="font-semibold">ユーザー名：</span><%= @user.name %>
       </p>
     </div>
 
     <%= link_to "✏️ プロフィールを編集", edit_user_registration_path,
-        class: "btn btn-outline btn-sm sm:btn-md" %>
+        class: "btn btn-outline btn-sm sm:btn-md w-full sm:w-auto" %>
   </div>
 </div>
 
 <!-- 今日のタスクステータス -->
 <% if @today_task.present? %>
   <%= link_to task_path(@today_task), class: "block" do %>
-    <div class="card bg-base-100 shadow-xl mb-8 p-6 border-l-4 <%= @today_task.done? ? 'border-green-400' : 'border-yellow-400' %>">
+    <div class="card bg-base-100 shadow-xl mb-6 sm:mb-8 p-4 sm:p-6 border-l-4 <%= @today_task.done? ? 'border-green-400' : 'border-yellow-400' %>">
       <div class="card-body space-y-2">
-        <div class="flex items-center justify-between">
-          <h2 class="card-title text-xl text-base-content">
-            ☁️ 今日のタスク：<span class="text-yellow-600"><%= @today_task.title %></span>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <h2 class="card-title text-lg sm:text-xl text-base-content">
+            ☁️ 今日のタスク：<span class="text-yellow-600 break-words"><%= @today_task.title %></span>
           </h2>
 
           <% if @today_task.done? %>
@@ -30,7 +30,7 @@
           <% end %>
         </div>
 
-        <p class="text-base-content/70">
+        <p class="text-base-content/70 text-sm sm:text-base">
           <%= truncate(@today_task.description.presence || "", length: 120) %>
         </p>
         <!-- ↓↓↓ 追加部分 ↓↓↓ -->
@@ -47,10 +47,10 @@
     </div>
   <% end %>
 <% else %>
-  <div class="card bg-base-200 shadow-inner mb-8 p-6 border-l-4 border-blue-300">
+  <div class="card bg-base-200 shadow-inner mb-6 sm:mb-8 p-4 sm:p-6 border-l-4 border-blue-300">
     <div class="card-body">
-      <h2 class="card-title text-lg text-base-content mb-2">📅 今日のタスクはまだ登録されていません</h2>
-      <%= link_to "🎯 今日のタスクを作成する", new_task_path, class: "btn btn-primary mt-2" %>
+      <h2 class="card-title text-base sm:text-lg text-base-content mb-2">📅 今日のタスクはまだ登録されていません</h2>
+      <%= link_to "🎯 今日のタスクを作成する", new_task_path, class: "btn btn-primary mt-2 w-full sm:w-auto" %>
     </div>
   </div>
 <% end %>
@@ -60,7 +60,7 @@
 <h2 class="text-xl font-semibold text-base-content mb-4">📅 あなたの投稿</h2>
 
 <% if @tasks.any? %>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
     <% @tasks.each do |task| %>
       <%= link_to task_path(task), class: "card bg-base-100 shadow-md hover:shadow-xl transition no-underline text-base-content" do %>
         <div class="card-body">
