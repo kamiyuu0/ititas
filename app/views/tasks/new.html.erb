@@ -1,11 +1,12 @@
-<h1 class="text-3xl font-bold mb-3 text-center">🎯 今日の「いちたす」を登録しよう！</h1>
+<div class="min-h-screen px-4 py-6">
+  <h1 class="text-2xl sm:text-3xl font-bold mb-3 text-center">🎯 今日の「いちたす」を登録しよう！</h1>
 
-<div class="max-w-xl mx-auto mb-6 text-center text-sm text-gray-600">
-  <p>※ タスクの作成は <span class="font-semibold text-yellow-600">1日1つ</span> だけです。</p>
-  <p>※ 作成後の <span class="font-semibold text-yellow-600">編集はできません</span>。</p>
-</div>
+  <div class="max-w-xl mx-auto mb-6 text-center text-xs sm:text-sm text-gray-600 px-2">
+    <p class="mb-1">※ タスクの作成は <span class="font-semibold text-yellow-600">1日1つ</span> だけです。</p>
+    <p>※ 作成後の <span class="font-semibold text-yellow-600">編集はできません</span>。</p>
+  </div>
 
-<div class="max-w-xl mx-auto bg-base-100 p-6 rounded-lg shadow-lg">
+  <div class="max-w-xl mx-auto bg-base-100 p-4 sm:p-6 rounded-lg shadow-lg">
   <%= form_with model: @task, local: true do |f| %>
     <% if @task.errors.any? %>
       <div class="mb-4 text-red-500">
@@ -19,24 +20,25 @@
     <% end %>
 
     <div class="form-control mb-4">
-      <%= f.label :title, "タイトル", class: "label" %>
-      <%= f.text_field :title, class: "input input-bordered w-full", placeholder: "例: Rubyの復習をやる" %>
+      <%= f.label :title, "タイトル", class: "label text-sm font-medium" %>
+      <%= f.text_field :title, class: "input input-bordered w-full text-sm sm:text-base", placeholder: "例: Rubyの復習をやる" %>
     </div>
 
     <div class="form-control mb-4">
-      <%= f.label :description, "詳細", class: "label" %>
-      <%= f.text_area :description, class: "textarea textarea-bordered w-full", rows: 4, placeholder: "やる理由や目標などを書いてもOK" %>
+      <%= f.label :description, "詳細", class: "label text-sm font-medium" %>
+      <%= f.text_area :description, class: "textarea textarea-bordered w-full text-sm sm:text-base", rows: 4, placeholder: "やる理由や目標などを書いてもOK" %>
     </div>
 
     <div class="form-control mb-6">
-      <label class="label cursor-pointer justify-start space-x-2">
-        <%= f.check_box :is_public, { class: "checkbox checkbox-primary" } %>
-        <span class="label-text">みんなに公開する（ONにすると一覧に表示されます）</span>
+      <label class="label cursor-pointer justify-start space-x-2 flex-wrap">
+        <%= f.check_box :is_public, { class: "checkbox checkbox-primary flex-shrink-0" } %>
+        <span class="label-text text-xs sm:text-sm">みんなに公開する（ONにすると一覧に表示されます）</span>
       </label>
     </div>
 
-    <div class="flex justify-end">
-      <%= f.submit "☁️ 登録する", class: "btn btn-primary" %>
+    <div class="flex justify-center sm:justify-end">
+      <%= f.submit "☁️ 登録する", class: "btn btn-primary w-full sm:w-auto" %>
     </div>
   <% end %>
+</div>
 </div>
