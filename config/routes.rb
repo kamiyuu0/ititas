@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   get "mypage" => "users#show"
 
-  resources :tasks, only: [:index, :new, :create, :show] do
+  resources :tasks, only: [ :index, :new, :create, :show ] do
     member do
       patch :complete
     end
   end
-  
+
   root "static_pages#top"
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    registrations: "users/registrations",
+    sessions: "users/sessions"
   }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

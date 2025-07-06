@@ -8,9 +8,7 @@ class CreateTasks < ActiveRecord::Migration[7.2]
       t.boolean :is_public, default: true, null: false
       t.references :user, foreign_key: true
       t.timestamps
-
     end
-    add_index :tasks, [:user_id, :target_date], unique: true
-
+    add_index :tasks, [ :user_id, :target_date ], unique: true
   end
 end
