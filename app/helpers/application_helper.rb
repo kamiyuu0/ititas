@@ -1,7 +1,7 @@
 module ApplicationHelper
     def back_link_path
       # リファラーが存在し、t.coからのリンクでない場合はリファラーを使用
-      if request.referer.present? && !request.referer.include?('t.co')
+      if request.referer.present? && !request.referer.include?("t.co")
         request.referer
       else
         root_path
