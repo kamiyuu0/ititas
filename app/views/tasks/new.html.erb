@@ -29,6 +29,21 @@
       <%= f.text_area :description, class: "textarea textarea-bordered w-full text-sm sm:text-base", rows: 4, placeholder: "やる理由や目標などを書いてもOK" %>
     </div>
 
+    <div class="form-control mb-4">
+      <%= f.label :mood, "今の気分", class: "label text-sm font-medium" %>
+      <div class="grid grid-cols-3 gap-2 mt-2">
+        <% [["😀", "楽しい"], ["🥲", "疲れ気味"], ["😎", "やる気満々"]].each do |emoji, label| %>
+          <label class="cursor-pointer">
+            <%= f.radio_button :mood, emoji, class: "sr-only peer" %>
+            <div class="w-full p-3 bg-base-200 rounded-lg text-center border-2 border-transparent peer-checked:border-primary peer-checked:bg-primary/10 hover:bg-base-300 transition-colors">
+              <div class="text-2xl mb-1"><%= emoji %></div>
+              <div class="text-xs text-gray-600"><%= label %></div>
+            </div>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
     <div class="form-control mb-6">
       <label class="label cursor-pointer justify-start space-x-2 flex-wrap">
         <%= f.check_box :is_public, { class: "checkbox checkbox-primary flex-shrink-0" } %>

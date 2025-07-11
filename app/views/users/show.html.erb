@@ -20,7 +20,7 @@
       <div class="card-body space-y-2">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <h2 class="card-title text-lg sm:text-xl text-base-content">
-            ☁️ 今日のタスク：<span class="text-yellow-600 break-words"><%= @today_task.title %></span>
+            <%= @today_task.mood_emoji %> 今日のタスク：<span class="text-yellow-600 break-words"><%= @today_task.title %></span>
           </h2>
 
           <% if @today_task.done? %>
@@ -66,7 +66,7 @@
         <div class="card-body">
           <div class="flex items-center justify-between">
             <h2 class="card-title text-yellow-600 text-base font-semibold">
-              🐣 <%= task.user.name %>
+              <%= task.mood_emoji %> <%= task.user.name %>
             </h2>
 
             <% if task.done? %>

@@ -12,7 +12,7 @@
       <div class="card-body">
         <div class="flex items-center justify-between">
           <h2 class="card-title text-yellow-600">
-            🐣 <%= task.user.name %>
+            <%= task.mood_emoji %> <%= task.user.name %>
           </h2>
 
           <% if task.done? %>
