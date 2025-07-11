@@ -1,5 +1,11 @@
 <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center px-4">☁️ 今日のみんなの「いちたす」</h1>
 
+<div class="text-center mb-6">
+  <p class="text-lg text-gray-600">
+    🚶 昨日1歩踏み出した数: <span class="font-bold text-yellow-600"><%= @yesterday_steps %></span>
+  </p>
+</div>
+
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
   <% @tasks.each do |task| %>
     <%= link_to task_path(task), class: "card bg-base-100 shadow-lg hover:shadow-xl transition duration-200 no-underline text-current" do %>
