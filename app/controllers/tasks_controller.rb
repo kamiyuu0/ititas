@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all.includes(:user).where(is_public: true, target_date: Time.zone.today).order(target_date: :asc)
+    @yesterday_steps = Task.where(target_date: Time.zone.yesterday).count
   end
 
   def new
