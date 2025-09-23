@@ -27,4 +27,46 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def after_omniauth_failure_path_for(scope)
   #   super(scope)
   # end
+
+  def line
+    if user_signed_in?
+      link_line_account
+    else
+      basic_action
+    end
+  end
+
+  private
+  def basic_action
+    @omniauth = request.env["omniauth.auth"]
+    if @omniauth.present?
+      @profile = User.find_or_initialize_by(provider: @omniauth["provider"], uid: @omniauth["uid"])
+      if @profile.email.blank?
+        email = @omniauth["info"]["email"] ? @omniauth["info"]["email"] : "#{@omniauth["uid"]}-#{@omniauth["provider"]}@example.com"
+        @profile = current_user || User.create!(provider: @omniauth["provider"], uid: @omniauth["uid"], email: email, name: @omniauth["info"]["name"], password: Devise.friendly_token[0, 20])
+      end
+      @profile.set_values(@omniauth)
+      sign_in(:user, @profile)
+    end
+    flash[:notice] = "ログインしました"
+    redirect_to tasks_path
+  end
+
+  def link_line_account
+    @omniauth = request.env["omniauth.auth"]
+
+    unless @omniauth && @omniauth["provider"].present? && @omniauth["uid"].present?
+      flash[:alert] = "LINE連携に失敗しました"
+      return redirect_to mypage_path
+    end
+
+    if User.exists?(provider: @omniauth["provider"], uid: @omniauth["uid"])
+      flash[:alert] = "このLINEアカウントは既に登録されています"
+    else
+      current_user.update!(provider: @omniauth["provider"], uid: @omniauth["uid"])
+      flash[:notice] = "LINEアカウントを紐付けました"
+    end
+
+    redirect_to mypage_path
+  end
 end

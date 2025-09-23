@@ -1,6 +1,9 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # 開発環境でLINE認証を使用するための設定
+  config.hosts.clear
+
   config.i18n.default_locale = :ja
   # Settings specified here will take precedence over those in config/application.rb.
 
