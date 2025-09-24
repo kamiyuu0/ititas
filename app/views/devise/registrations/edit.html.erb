@@ -22,6 +22,17 @@
       <%= f.text_field :name, class: "input input-bordered w-full" %>
     </div>
 
+  <% if current_user.provider == "line" %>
+    <div class="form-control">
+      <%= f.label :notification_enabled, "通知を有効にする", class: "label label-text font-semibold" %>
+      <%= f.check_box :notification_enabled %>
+    </div>
+
+    <div class="field">
+      <%= f.label :notification_time, "通知時刻", class: "label label-text font-semibold" %><br>
+      <%= f.time_field :notification_time %>
+    </div>
+  <% end %>
 
     <!-- 送信ボタン -->
     <div class="form-control mt-6">
