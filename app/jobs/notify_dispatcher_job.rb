@@ -10,7 +10,7 @@ class NotifyDispatcherJob < ApplicationJob
     tmp2_user = tmp_user.where("notification_time = ?", target_time)
     
     # logger
-    Rails.logger "#{tmp2_user.first.name}::::#{tmp2_user.first.notification_time}:::::#{target_time}"
+    Rails.logger "#target_time：#{target_time}"
 
     tmp2_user.find_each do |user|
       puts user.name
