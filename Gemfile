@@ -44,7 +44,7 @@ gem "meta-tags"
 gem "omniauth-line"
 gem "omniauth-rails_csrf_protection"
 gem "dotenv-rails"
-gem "omniauth", "~> 1.9.1"
+gem "omniauth", "~> 2.1.3"
 gem "line-bot-api"
 
 gem "redis", ">= 4.0.1"
