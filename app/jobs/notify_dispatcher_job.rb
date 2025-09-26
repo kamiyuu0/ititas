@@ -2,7 +2,7 @@ class NotifyDispatcherJob < ApplicationJob
   queue_as :default
 
   def perform
-    now = Time.current.change(sec: 0)
+    now = Time.current.utc.change(sec: 0)
     target_time = Time.parse("2000-01-01 #{now.strftime('%H:%M')}:00") # pgのtime型のデフォルト年月日は2000-01-01
 
     # TODO:リファクタリング
