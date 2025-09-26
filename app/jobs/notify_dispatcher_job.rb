@@ -8,9 +8,9 @@ class NotifyDispatcherJob < ApplicationJob
     #TODO:リファクタリング
     tmp_user = User.where(provider: "line", notification_enabled: true)
     tmp2_user = tmp_user.where("notification_time = ?", target_time)
-    
+    puts target_time
     # logger
-    Rails.logger "#target_time：#{target_time}"
+    #Rails.logger "#target_time：#{target_time}"
 
     tmp2_user.find_each do |user|
       puts user.name
