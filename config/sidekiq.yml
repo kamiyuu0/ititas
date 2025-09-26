@@ -4,5 +4,5 @@
 
 :cron:
   notify_dispatcher:
-    cron: "*/1 * * * *" # 毎分
+    cron: "*/5 * * * *" # 毎5分
     class: "NotifyDispatcherJob"
