@@ -8,7 +8,17 @@ class NotifyDispatcherJob < ApplicationJob
     #TODO:リファクタリング
     tmp_user = User.where(provider: "line", notification_enabled: true)
     tmp2_user = tmp_user.where("notification_time = ?", target_time)
+    puts "================="
+    puts "target_time↓"
     puts target_time
+    puts "================="
+
+    if !tmp2_user.nil?
+      puts "================="
+      puts "db_time↓"
+      puts tmp2_user.first.notification_time.strftime('%H:%M')
+      puts "================="
+    end
     # logger
     #Rails.logger "#target_time：#{target_time}"
 
