@@ -30,16 +30,17 @@
 
     <div class="form-control">
       <%= f.label :notification_time, "通知時刻", class: "label label-text font-semibold" %>
+      <% current_time = resource.notification_time&.strftime("%H:%M") %>
+
+      <% time_options = (0..23).flat_map { |hour| 
+           (0..59).step(5).map { |minute| 
+             time_str = sprintf("%02d:%02d", hour, minute)
+             [time_str, time_str]
+           }
+         } %>
       <%= f.select :notification_time, 
-          options_for_select(
-            (0..23).flat_map { |hour| 
-              (0..59).step(5).map { |minute| 
-                time_str = sprintf("%02d:%02d", hour, minute)
-                [time_str, time_str]
-              }
-            }
-          ), 
-          { selected: f.object.notification_time&.strftime("%H:%M"), prompt: "時刻を選択してください" },
+          time_options,
+          { selected: current_time, prompt: "時刻を選択してください" },
           { class: "select select-bordered w-full" }
       %>
       <div class="label">
