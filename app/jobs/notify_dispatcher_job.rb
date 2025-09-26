@@ -16,7 +16,7 @@ class NotifyDispatcherJob < ApplicationJob
     if !tmp2_user.nil?
       puts "================="
       puts "db_time↓"
-      puts tmp2_user.first.notification_time.strftime('%H:%M')
+      puts tmp2_user.first
       puts "================="
     end
     # logger
